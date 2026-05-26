@@ -1,11 +1,6 @@
-import pandas as pd
-import yfinance as yf
-import curl_cffi.requests as requests
-import copy
-import numpy as np
-
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import plotly.io as pio
-import os
-from ta.trend import ADXIndicator
+pandas>=2.0.0
+yfinance>=0.2.0
+curl-cffi>=0.5.0
+numpy>=1.24.0
+plotly>=5.0.0
+ta>=0.11.0
