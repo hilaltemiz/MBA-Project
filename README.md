@@ -1,3 +1,24 @@
-In my term project, I developed a model for predicting stock price trends. The aim is to enable the prediction of price movements in financial markets, which is a crucial analysis for making more informed investment decisions.
-This development was carried out using the Python programming language, incorporating technical analysis indicators and generating buy/sell signals based on moving averages. 
-The performance of the investment strategy was analysed using the data obtained, and the model demonstrated its ability to successfully analyse market trends.
+# MBA Project - Stock Price Trend Prediction
+
+This project focuses on predicting stock price trends using Python and technical analysis indicators.
+
+## Project Purpose
+The main objective of this project is to analyze financial market movements and generate investment signals based on technical indicators and moving averages.
+
+## Technologies Used
+- Python
+- Pandas
+- NumPy
+- Plotly
+- yFinance
+- Technical Analysis (TA)
+
+## Features
+- Stock market data analysis
+- Technical indicator calculations
+- Buy/Sell signal generation
+- ADX indicator analysis
+- Interactive financial charts
+
+## Project Outcome
+The model successfully analyzed market trends and demonstrated how technical analysis can support investment decision-making processes.
