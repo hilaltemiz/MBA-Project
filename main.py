@@ -10,15 +10,15 @@ session.verify = False
 
 
 def importData(symbol="GARAN.IS", date="2017-01-01"):
-    #seçilen tarih için verileri indir
+    #Download data for the selected date
     df = yf.download(symbol, start=date, progress=False, session=session)
     
-    #tarihi indexe ata
+    #Add to historical index
     df.index = pd.to_datetime(df.index)
     
     df.columns = df.columns.get_level_values(0)
     
-    #tüm kolon isimlerini büyüt
+    #capitalise all column names
     df.columns = df.columns.str.upper()
     
     return df
@@ -103,21 +103,21 @@ pio.renderers.default = "browser"
 def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
 
     """
-    Seçilen hareketli ortalama uzunluğunda uygulanan alım satım stratejisini görselleştirir.
+   It visualises the trading strategy applied using the selected moving average period.
     """
 
-    # Hareketli ortalamayı uygular ve sonucu 'useDfDec' değişkenine atar.
+   # Applies the moving average and assigns the result to the “useDfDec” variable.
     useDf = applyMA(useSymbol, pMA)
 
     useDfDec = useDf.dropna(subset=["realRETURN"])
     
 
     
-    # Boş değerleri önceki dolu değerle doldurur.
+    # Fills empty values with the previous non-empty value.
     useDf = useDf.ffill().bfill()
     print(useDfDec.head())
     
-    # 'AL' ve 'SAT' sinyalleri için veri izleri oluşturur.
+    # Creates data trails for “BUY” and “SELL” signals.
     trace1 = go.Scatter(
      x=useDfDec[useDfDec["DECISION"] == "BUY"].index,
      y=useDfDec[useDfDec["DECISION"] == "BUY"]["CLOSE"],
@@ -144,7 +144,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
         )
     )
    
-    # Grafiğin başlama ve bitiş tarihlerini belirler.
+    # Sets the start and end dates of the chart.
     startPlt, endPlt = (
     useDf.tail(600).index.values[0],
     useDf.tail(600).index.values[-1]
@@ -153,7 +153,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
     startPlt = pd.to_datetime(startPlt)
     endPlt = pd.to_datetime(endPlt)
 
-    # Alt grafiklerle birlikte bir ana grafik oluşturur.
+    # Creates a main chart along with sub-charts.
     fig = make_subplots(
         rows=2,
         cols=1,
@@ -165,7 +165,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
     fig.add_trace(trace1, row=1, col=1)
     fig.add_trace(trace2, row=1, col=1)
     
-   # Kapanış fiyatları için veri izini ekler.
+   # Adds a data source for closing prices.
     fig.add_trace(
         go.Scatter(
             x=useDf.index,
@@ -177,7 +177,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
         col=1
     )
 
-    # Hareketli ortalama için veri izini ekler.
+    # Adds a data trail for the moving average.
     fig.add_trace(
         go.Scatter(
             x=useDf.index,
@@ -189,7 +189,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
         col=1
     )
 
-    # Gerçek getiriler için veri izini ekler.
+    # Adds a data trail for actual returns.
     fig.add_trace(
         go.Scatter(
             x=useDf.index,
@@ -203,10 +203,10 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
 
  
 
-# İzi günceller.
+# Updates the trail
     fig.update_traces(marker_size=14)
 
-# Grafiğin düzenini belirler.
+# Determines the layout of the chart.
     layout = go.Layout(
     plot_bgcolor='#F8F9F9',
     title=useSymbol + " hissesinin " + str(pMA) + " günlük hareketli ortalaması için al/sat sinyal grafiği",
@@ -239,7 +239,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
         tickformat="%d-%m-%Y"
     )
 
-    # Grafiği indirme seçeneği etkinse, görüntü ve HTML olarak kaydeder.
+    # If the option to download the graph is enabled, it saves it as an image and in HTML format.
     if download:
 
         if not os.path.exists("images"):
@@ -253,7 +253,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
             "images/MA_" + useSymbol + ".html"
         )
 
-    # Chrome'da gösterir
+    # Displays in Chrome
     fig.show(renderer="browser")
 
     return useDf
