@@ -1,4 +1,4 @@
-# Stock Price Trend Prediction and Strategy Optimization Using SMA & ADX
+# MBA Final Project | Stock Price Trend Prediction Using SMA & ADX
 
 A Python-based stock market analysis application that combines SMA and ADX indicators to generate trading signals, optimize strategy parameters, and visualize investment performance using historical market data.
 
