@@ -209,7 +209,7 @@ def visualiseMA(useSymbol="GARAN.IS", pMA=22, download=False):
 # Determines the layout of the chart.
     layout = go.Layout(
     plot_bgcolor='#F8F9F9',
-    title=useSymbol + " hissesinin ADX Destekli " + " hareketli ortalaması için al/sat sinyal grafiği",
+    title=useSymbol + " Hissesinin ADX Destekli " + " Hareketli Ortalama Al/Sat Sinyal Grafiği",
     font_color='#000000',
     font_size=12,
     xaxis=dict(
@@ -513,7 +513,7 @@ def visualiseADX(useSymbol="GARAN.IS", pADXMA=22, pADXThres=25, download=False):
 
     fig.update_layout(
         plot_bgcolor="#F8F9F9",
-        title=useSymbol + " " hissesinin ADX Destekli" + " hareketli ortalaması için al/sat sinyal grafiği",
+        title=useSymbol +" Hissesinin ADX Destekli " + " Hareketli Ortalama Al/Sat Sinyal Grafiği",
         font_color="#000000",
         font_size=12,
         autosize=False,
