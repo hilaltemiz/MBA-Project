@@ -1,6 +1,6 @@
 # MBA Project - Stock Price Trend Prediction
 
-This project focuses on predicting stock price trends using Python and technical analysis indicators.
+A Python-based stock market analysis application that combines SMA and ADX indicators to generate trading signals, optimize strategy parameters, and visualize investment performance using historical market data.
 
 ## Project Purpose
 The main objective of this project is to analyze financial market movements and generate investment signals based on technical indicators and moving averages.
